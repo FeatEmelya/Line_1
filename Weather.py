@@ -17,7 +17,7 @@ current_datetime = datetime.datetime.now()
 # Получение погоды по местоположению пользователя
 
 def get_weather(city):
-    api_key = 'YOUR_API_KEY'  # Замените на ваш собственный ключ API
+    api_key = '5a030a4f57msh162c56be0644328p10fd5ejsne068ac57c24d'  # Замените на ваш собственный ключ API
     base_url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}'
     response = requests.get(base_url)
     data = response.json()
