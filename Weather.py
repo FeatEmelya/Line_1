@@ -29,8 +29,8 @@ temperature, weather_description = get_weather(city)
 
 # Вывод на главный экран MacBook
 
-widget_text = f"Hello! You are currently in {city}, {country}.\n"
-widget_text += f"The current date and time is {current_datetime}.\n"
-widget_text += f"The temperature is {temperature}°C with {weather_description}."
+widget_text = f"Новости с полей {city}, {country}.\n"
+widget_text += f"Ты посмотрел сюда в {current_datetime}.\n"
+widget_text += f"Захочешь прогуляться, учти что на улице {temperature}°C with {weather_description}."
 
 print(widget_text)
