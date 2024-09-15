@@ -1,0 +1,108 @@
+#Шесть дней и ночей Я топтал траву
+import telebot
+import os
+
+# Замените TOKEN на Ваш токен бота
+TOKEN = '7491827545:AAFfnOIYDafoJIpHfQvxYZe9FnweUxgYL6I'
+
+# Создаем экземпляр бота
+bot = telebot.TeleBot(TOKEN)
+
+# Обработчик команды /start
+@bot.message_handler(commands=['start'])
+def start(message):
+    markup = telebot.types.ReplyKeyboardMarkup(row_width=2)
+    btn1 = telebot.types.KeyboardButton("Я уже была")
+    btn2 = telebot.types.KeyboardButton("Я в первый раз")
+    markup.add(btn1, btn2)
+    bot.send_message(chat_id=message.chat.id, text="👋 Вас приветствует студия реконструкции волос AVS", reply_markup=markup)
+
+# Линия обработки первого раза
+# Обработчик нажатия кнопки "Я в первый раз"
+@bot.message_handler(func=lambda message: message.text == "Я в первый раз")
+def first_time(message):
+    markup = telebot.types.ReplyKeyboardMarkup(row_width=2)
+    btn1 = telebot.types.KeyboardButton("Обо мне")
+    btn2 = telebot.types.KeyboardButton("Работы")
+    btn3 = telebot.types.KeyboardButton("Прайс")
+    btn4 = telebot.types.KeyboardButton("Адрес")
+    btn5 = telebot.types.KeyboardButton("Связаться с мастером")
+    btn6 = telebot.types.KeyboardButton("Главное меню")
+    markup.add(btn1, btn2, btn3, btn4, btn5, btn6)
+    bot.send_message(chat_id=message.chat.id, text="Приятно познакомиться", reply_markup=markup)
+
+# Обработчик нажатия кнопки "Обо мне"
+@bot.message_handler(func=lambda message: message.text == "Обо мне")
+def about_me(message):
+    text = "Меня зовут Анастасия и Я уже более 2-х лет сертифицированный мастер по реконструкции волос"
+    markup = telebot.types.ReplyKeyboardMarkup(row_width=2)
+    btn1 = telebot.types.KeyboardButton("Мои работы")
+    btn2 = telebot.types.KeyboardButton("Связаться с мастером")
+    btn3 = telebot.types.KeyboardButton("Что Я умею")
+    btn4 = telebot.types.KeyboardButton("Главное меню")
+    markup.add(btn1, btn2, btn3, btn4)
+    bot.send_message(chat_id=message.chat.id, text=text, reply_markup=markup)
+
+# Второстепенная ветка "Обо мне"
+# Ветка " Мои Работы"
+@bot.message_handler(func=lambda message: message.text == "Обо мне")
+def about_me(message):
+    #text = "Меня зовут Анастасия и Я уже более 2-х лет сертифицированный мастер по реконструкции волос"
+    context.bot.send_photo(chat_id=update.effective_chat.id, photo=open('/Users/admin/Desktop/1.jpg', 'rb'), caption='Меня зовут Анастасия и Я уже более 2-х лет сертифицированный мастер по реконструкции волос')
+    markup = telebot.types.ReplyKeyboardMarkup(row_width=2)
+    btn1 = telebot.types.KeyboardButton("Мои работы")
+    btn2 = telebot.types.KeyboardButton("Связаться с мастером")
+    btn3 = telebot.types.KeyboardButton("Что Я умею")
+    btn4 = telebot.types.KeyboardButton("Главное меню")
+    markup.add(btn1, btn2, btn3, btn4)
+    bot.send_message(chat_id=message.chat.id, text=text, reply_markup=markup)
+
+
+
+# Ветка "Что Я умею"
+
+
+
+# Обработчик нажатия кнопки "Связаться с мастером"
+@bot.message_handler(func=lambda message: message.text == "Связаться с мастером")
+def contact_master(message):
+    bot.send_message(chat_id=message.chat.id, text="Вы можете связаться со мной по ссылке: t.me/feat_emelya")
+
+# Обработчик нажатия кнопки "Работы" Набор Слайдов
+
+# Обработчик нажатия кнопки "Прайс" Набор слайдов
+
+# Обработчик нажатия кнопки "Адрес" ТГ Карта
+
+
+
+# Линия обработки второго раза
+# Обработчик нажатия кнопки "Я уже была"
+@bot.message_handler(func=lambda message: message.text == "Я уже была")
+def already_visited(message):
+    markup = telebot.types.ReplyKeyboardMarkup(row_width=2)
+    btn1 = telebot.types.KeyboardButton("Работы")
+    btn2 = telebot.types.KeyboardButton("Прайс")
+    btn3 = telebot.types.KeyboardButton("Связаться с мастером")
+    btn4 = telebot.types.KeyboardButton("Адрес")
+    btn5 = telebot.types.KeyboardButton("Главное меню")
+    markup.add(btn1, btn2, btn3, btn4, btn5)
+    bot.send_message(chat_id=message.chat.id, text="Выберите интересующий пункт:", reply_markup=markup)
+
+
+
+
+#Решаем проблему "назад на Главный экран"
+@bot.message_handler(func=lambda message: message.text == "Главное меню")
+def General_menu(message):
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = telebot.types.KeyboardButton("Я уже была")
+    btn2 = telebot.types.KeyboardButton("Я в первый раз")
+    markup.add(btn1, btn2)
+    bot.send_message(message.chat.id, "Привет! Выберите, что Вы хотите сделать:", reply_markup=markup)
+
+        
+
+
+# Запуск бота
+bot.polling()
